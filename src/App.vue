@@ -13,6 +13,8 @@ let restOfDay = msToMidnight();
 
 let timer = ref(convertMsToTime());
 
+let counter = ref(0);
+
 
 function areYouFastEnough(){
 
@@ -38,6 +40,25 @@ function msToMidnight(){
   return oneDay - msIntoDay;
 }
 
+
+
+function amIOnStreak(){
+
+  //holde streaken
+  let streakTimeWindow = user.value.msToMidnight + 86400000;
+  // if streakTimeWindow
+  // counter ++
+  //else if !streakTimeWindow
+  // counter = 0
+
+  //if counter >== 2
+  //user.value.streak++
+
+  // if(new Date().getMilliseconds() > streakTimeWindow) return false;
+}
+
+
+
 function convertMsToTime(){
 
   let oneDay = 86400000
@@ -56,18 +77,20 @@ function convertMsToTime(){
 }
 
 onMounted(async () => {
-if(user.value) {
+
+  let req = await fetch("http://localhost:4002/user")
+  user.value = await req.json()
+  console.log(user.value)
+
   areYouFastEnough();
-}
+
   startTimer();
   convertMsToTime()
 
   msToMidnight()
   if(user.value){getNextAvailableTime()}
 
-  let req = await fetch("http://localhost:4002/user")
-  user.value = await req.json()
-  console.log(user.value)
+
 })
 
 async function updateScore(){
@@ -75,10 +98,11 @@ async function updateScore(){
   if(!user.value){
     return;
   }
+  amIOnStreak();
   let newScore = user.value.score + 1
   let newStreak = user.value.streak + 1
   let newTime = Date.now();
-
+  let toMidnight = msToMidnight();
 
   let req = await fetch("http://localhost:4002/user", {
     method: "PUT",
@@ -88,6 +112,8 @@ async function updateScore(){
       score: isOnTime.value ? newScore : user.value.score,
       streak: isOnTime.value ? newStreak : 0,
       timer: newTime,
+      msToMidnight: toMidnight,
+      counter: counter.value
     })
   })
 
@@ -133,9 +159,9 @@ function getNextAvailableTime(){
 
 
     </div>
-    <button @click="updateScore">Check!</button>
+    <button  @click="updateScore">Check!</button>
     <p>Timer:</p>
-    <strong>{{timer}}</strong>
+    <strong>{{timer.hours}} Hours - {{timer.minutes}} Minutes - {{timer.seconds}} Seconds</strong>
     <button @click="stopTimer">Stop timer</button>
   </div>
 -

@@ -2,8 +2,10 @@
   "user": {
     "id": 1,
     "name": "Jon",
-    "score": 19,
-    "streak": 15,
-    "timer": 1757418357341
+    "score": 30,
+    "streak": 26,
+    "timer": 1757508060007,
+    "msToMidnight": 40739993,
+    "counter": 0
   }
 }
