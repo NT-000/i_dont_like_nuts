@@ -51,7 +51,4 @@ Thumbs.db
 # ---- Typescript ----
 *.tsbuildinfo
 
-# ---- Optional: if using VS Code too ----
-.vscode/*
-!.vscode/extensions.json
-!.vscode/settings.json
+# ---- Optional: if using VS Co
