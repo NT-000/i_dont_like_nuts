@@ -1,11 +1,29 @@
 {
   "user": {
     "id": 1,
-    "name": "Jon",
-    "score": 30,
-    "streak": 26,
-    "timer": 1757508060007,
-    "msToMidnight": 40739993,
-    "counter": 0
+    "name": "Tjell",
+    "user_img": "tjell.png",
+    "score": 36,
+    "streak": 35,
+    "timer": 1757629255097,
+    "msToMidnight": 85144903,
+    "counter": 0,
+    "milestones": [
+      {
+        "id": 1,
+        "title": "10 day streak",
+        "img": "/10.png"
+      },
+      {
+        "id": 2,
+        "title": "20 days streak",
+        "img": "/20.png"
+      },
+      {
+        "id": 3,
+        "title": "30 days streak",
+        "img": "/30_days.png"
+      }
+    ]
   }
 }
